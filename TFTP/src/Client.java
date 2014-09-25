@@ -40,24 +40,23 @@ public class Client {
 			System.out.print("tftp> ");
 			String command[]=br.readLine().split(" ");
 			while(!command[0].equalsIgnoreCase("quit")) {
-				if(command.length==1) {
-					if(command[0].equalsIgnoreCase("connect")) {
-						System.out.println("(to) ");
-						hostName=br.readLine();
-						if(!checkAddress()) {
-							command=br.readLine().split(" ");
-							continue;
-						}					
-					}
-					else if(command[0].equalsIgnoreCase("?")) {
-						System.out.println("1. To connect to a server-Usage: connect <hostName>");
-						System.out.println("2. After connecting, to get file from server-"
-								+ "Usage: get srcPath destPath");
-						System.out.print("tftp> ");
+				if(command.length==1&&command[0].equalsIgnoreCase("connect")) {	
+					System.out.println("(to) ");
+					hostName=br.readLine();
+					if(!checkAddress()) {
 						command=br.readLine().split(" ");
 						continue;
 					}
+				}	
+				else if(command.length==1&&command[0].equalsIgnoreCase("?")) {
+					System.out.println("1. To connect to a server-Usage: connect <hostName>");
+					System.out.println("2. After connecting, to get file from server-"
+							+ "Usage: get srcPath destPath");
+					System.out.print("tftp> ");
+					command=br.readLine().split(" ");
+					continue;
 				}
+				
 				else if(command.length==2&&command[0].equalsIgnoreCase("connect")) {			
 					hostName=command[1];
 					if(!checkAddress()) {
